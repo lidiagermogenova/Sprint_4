@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CustomerInformation {
+public class CustomerInformationPage {
     private WebDriver driver;
 
     private By setName = By.cssSelector("input[placeholder='* Имя']"); // поле "Имя";
@@ -15,7 +15,7 @@ public class CustomerInformation {
     private By stationField = By.xpath("//input[@placeholder='* Станция метро']"); // поле "Станция метро";
     private By clickNextButton = By.xpath("//button[contains(@class, 'Button_Middle__1CSJM') and text()='Далее']"); // кнопка "Далее";
 
-    public CustomerInformation(WebDriver driver) {
+    public CustomerInformationPage(WebDriver driver) {
         this.driver = driver;
     }
 

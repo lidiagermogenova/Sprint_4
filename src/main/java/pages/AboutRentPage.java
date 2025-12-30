@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AboutRent {
+public class AboutRentPage {
     private WebDriver driver;
     private By orderDate = By.xpath(".//input[@placeholder = '* Когда привезти самокат']"); // поле "Когда привезти самокат";
     private By rentalPeriod = By.xpath(".//div[@class = 'Dropdown-control']"); // поле "Срок аренды";
@@ -21,7 +21,7 @@ public class AboutRent {
         return By.xpath("//div[contains(@class,'react-datepicker__day') and text()='" + day + "']");
     }
 
-    public AboutRent(WebDriver driver) {
+    public AboutRentPage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -35,7 +35,7 @@ public class AboutRent {
     public void setRentalPeriod(String period) {
         driver.findElement(rentalPeriod).click();
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        By periodList = By.xpath("//div[contains(@class,'Dropdown-option') and (text()='" + period + "')]");
+        By periodList = By.xpath(String.format("//div[contains(@Class,'Dropdown-option') and (text()='%s')]", period)); // убрала конкатенацию и выбрала String.format();
         wait.until(ExpectedConditions.visibilityOfElementLocated(periodList));
         driver.findElement(periodList).click();
     }

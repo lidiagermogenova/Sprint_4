@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MainPage {
     private WebDriver driver;
     public WebDriverWait wait; //ОСТАВЛЯТЬ ИЛИ НЕТ
-    private static final String OPEN_PAGE = "https://qa-scooter.praktikum-services.ru/"; //константа
+    private static final String BASE_URL = "https://qa-scooter.praktikum-services.ru/"; //константа
 
     //здесь модификатор private или все-таки public ?!
     public By cookieQuestion = By.className("App_CookieConsent__1yUIN");
@@ -21,6 +21,11 @@ public class MainPage {
         System.out.println("Получен драйвер: " + (driver != null));
         this.driver=driver;
         System.out.println("this.driver установлен: " + (this.driver != null));
+    }
+
+    public void scrollToElement(By locator) { // ДОБАВИЛА ОТДЕЛЬНЫЙ МЕТОД ДЛЯ СКРОЛЛА
+        WebElement element = driver.findElement(locator);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
     }
 
     public void acceptCookiesIfPresent() {
@@ -45,19 +50,15 @@ public class MainPage {
     }
 
     public void setOrderButtonBelow() {
-        WebElement element = driver.findElement(orderButtonBelow);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
+        scrollToElement(orderButtonBelow);// ЗДЕСЬ ВЫЗЫВАЮ СКРОЛЛ
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(orderButtonBelow));
         driver.findElement(orderButtonBelow).click();
     } // метод для нижней кнопки ЗАКАЗАТЬ
 
     public void openPage() {
-        driver.get("https://qa-scooter.praktikum-services.ru/"); //НАДО ВЫНЕСТИ В КОНСТАНТУ!!!!!
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        driver.get(BASE_URL); //НАДО ВЫНЕСТИ В КОНСТАНТУ!!!!!
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='Заказать']")));
     }
 }

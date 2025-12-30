@@ -4,8 +4,8 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.AboutRent;
-import pages.CustomerInformation;
+import pages.AboutRentPage;
+import pages.CustomerInformationPage;
 import pages.FAQPage;
 import pages.MainPage;
 
@@ -13,8 +13,8 @@ public class BaseTest {
     WebDriver driver;
     WebDriverWait wait;
     MainPage mainPage;
-    CustomerInformation customerInformation;
-    AboutRent aboutRent;
+    CustomerInformationPage customerInformationPage;
+    AboutRentPage aboutRentPage;
     FAQPage faqPage;
 
     @Before
@@ -31,9 +31,9 @@ public class BaseTest {
         //    }
         mainPage = new MainPage(driver);
 
-        customerInformation = new CustomerInformation(driver);
+        customerInformationPage = new CustomerInformationPage(driver);
 
-        aboutRent = new AboutRent(driver);
+        aboutRentPage = new AboutRentPage(driver);
 
         faqPage = new FAQPage(driver);
         //}

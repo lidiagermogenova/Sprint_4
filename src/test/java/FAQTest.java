@@ -27,7 +27,7 @@ public class FAQTest extends BaseTest {
         };
     }
     @Test
-    public void checkFAQ() {
+    public void checkFAQtest() {
         // Открыть сайт;
         mainPage.openPage();
         // Принять куки;
